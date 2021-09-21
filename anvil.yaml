@@ -2,6 +2,7 @@ allow_embedding: false
 package_name: anvil_docker_app
 name: anvil-docker-app
 startup_form: Form1
+uplink_visible: true
 runtime_options: {version: 2, client_version: '3', server_version: python3-full}
 services:
 - source: /runtime/services/tables.yml
