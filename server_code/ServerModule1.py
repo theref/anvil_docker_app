@@ -11,6 +11,6 @@ import anvil.server
 # Here is an example - you can replace it with your own:
 #
 @anvil.server.callable
-def say_hello(name):
+def say_hello():
   return anvil.server.call('say_hello_local')
 
