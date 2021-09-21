@@ -10,3 +10,7 @@ class Form1(Form1Template):
         self.init_components(**properties)
 
         # Any code you write here will run when the form opens.
+
+    def call_server_button_click(self, **event_args):
+      alert(content=server.call('say_hello'))
+
