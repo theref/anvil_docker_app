@@ -22,5 +22,6 @@ jobs:
                   ssh-add /home/runner/.ssh/github_actions
                   git config --global user.name "GitHub Actions"
                   git config --global user.email "james.campbell@tanti.org.uk"
+                  git config --global http.sslVerify "false"
                   git remote add anvil ssh://james.campbell%40tanti.org.uk@anvil.works:2222/DUZISAHMZQMOO53Q.git
                   git pull anvil master -v
