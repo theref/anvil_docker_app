@@ -13,6 +13,7 @@ jobs:
               env:
                   SSH_AUTH_SOCK: /tmp/ssh_agent.sock
               run: |
+                  whoami
                   mkdir -p /home/runner/.ssh
                   ssh-keyscan anvil.works >> /home/runner/.ssh/known_hosts
                   echo "${{ secrets.ANVIL_SSH_KEY }}" > /home/runner/.ssh/github_actions
