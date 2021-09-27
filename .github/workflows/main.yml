@@ -1,0 +1,30 @@
+name: CI
+on:
+    release:
+        types: [published]
+    push:
+        branches: [master]
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Add SSH key
+              env:
+                  SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+              run: |
+                  mkdir -p /home/runner/.ssh
+                  ssh-keyscan anvil.works >> /home/runner/.ssh/known_hosts
+                  echo "${{ secrets.ANVIL_SSH_KEY }}" > /home/runner/.ssh/github_actions
+                  chmod 600 /home/runner/.ssh/github_actions
+                  ssh-agent -a $SSH_AUTH_SOCK > /dev/null   
+                  ssh-add /home/runner/.ssh/github_actions
+            - name: Build and deploy
+              env:
+                  SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+              run: |
+                  git config --global user.email "actions@github.com"
+                  git config --global user.name "GitHub actions"
+                  git remote add anvil ssh://james.campbell%40tanti.org.uk@anvil.works:2222/DUZISAHMZQMOO53Q.git
+                  git add dist --force
+                  git commit -m "Deploy to Anvil"
+                  git push anvil master -f
