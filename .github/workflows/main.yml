@@ -23,4 +23,4 @@ jobs:
                   git config --global user.name "GitHub Actions"
                   git config --global user.email "james.campbell@tanti.org.uk"
                   git remote add anvil ssh://james.campbell%40tanti.org.uk@anvil.works:2222/DUZISAHMZQMOO53Q.git
-                  git push anvil master -f
+                  git push anvil master --force
