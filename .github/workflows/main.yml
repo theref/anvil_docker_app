@@ -9,11 +9,12 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
+              with:
+                fetch-depth: 0
             - name: Add SSH key
               env:
                   SSH_AUTH_SOCK: /tmp/ssh_agent.sock
               run: |
-                  whoami
                   mkdir -p /home/runner/.ssh
                   echo "${{ secrets.ANVIL_HOST }}" > /home/runner/.ssh/known_hosts
                   echo "${{ secrets.ANVIL_SSH_KEY }}" > /home/runner/.ssh/github_actions
